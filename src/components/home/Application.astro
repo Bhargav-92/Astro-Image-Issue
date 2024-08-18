@@ -1,0 +1,113 @@
+---
+import Web1Image from '../../../public/Web1.webp';
+import Web2Image from '../../../public/Web2.webp';
+import Web3Image from '../../../public/Web3.webp';
+---
+
+<section class="p-4 md:p-9 lg:p-16 bg-[#FFFFFF] mt-6">
+  <div class="tabs">
+    <div class="tab-list">
+      <button class="tab-trigger active" data-tab="Setup1">Setup 1</button>
+      <button class="tab-trigger" data-tab="Setup2">Setup 2</button>
+      <button class="tab-trigger" data-tab="Setup3">Setup 3</button>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="Setup1">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+          <div class="flex items-center justify-center">
+            <img src={Web1Image.src} alt="Setup1" class="w-60 lg:w-full max-w-[60%]" />
+          </div>
+          <div class="flex flex-col justify-center">
+            <div class="text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] font-bold text-center lg:text-left">
+              Setup 1
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="Setup2">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+          <div class="flex items-center justify-center">
+            <img src={Web2Image.src} alt="Setup2" class="w-60 lg:w-full max-w-[60%]" />
+          </div>
+          <div class="flex flex-col justify-center">
+            <div class="text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] font-bold text-center lg:text-left">
+              Setup 2
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="Setup3">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+          <div class="flex items-center justify-center">
+            <img src={Web3Image.src} alt="Setup3" class="w-60 lg:w-full max-w-[60%]" />
+          </div>
+          <div class="flex flex-col justify-center">
+            <div class="text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] font-bold text-center lg:text-left">
+              Setup 3
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tab-list {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    margin-bottom: 1.5rem;
+  }
+  .tab-trigger {
+    flex-shrink: 0;
+    padding: 0;
+    padding-bottom: 0.25rem;
+    font-size: 0.75rem;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .tab-trigger.active {
+    border-bottom-color: #00ADEF;
+  }
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .tab-trigger {
+      font-size: 1.125rem;
+    }
+  }
+</style>
+
+<script>
+  function setupTabs() {
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const tabId = trigger.getAttribute('data-tab');
+
+        tabTriggers.forEach(t => t.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+
+        trigger.classList.add('active');
+        
+        if (tabId) {
+          const targetPane = document.getElementById(tabId);
+          if (targetPane) {
+            targetPane.classList.add('active');
+          }
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupTabs);
+</script>
